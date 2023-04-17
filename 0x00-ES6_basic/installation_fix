@@ -1,0 +1,2 @@
+# On bad install, run the following:
+npm cache clean --force

@@ -6,10 +6,11 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
     .then((objsList) => {
       for (const obj of objsList) {
         if (obj.status === 'rejected') {
-          obj.value = obj.reason;
+          obj.value = obj.reason.message;
           delete obj.reason;
         }
       }
+      // console.log(objsList);
       return objsList;
     });
 }

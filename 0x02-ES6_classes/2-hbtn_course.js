@@ -1,10 +1,10 @@
 export default class HolbertonCourse {
   constructor(name, length, students) {
-      this._name = name;
+      this.name = name;
 
-      this._length = length;
+      this.length = length;
 
-      this._students = students;
+      this.students = students;
   }
 
   // Implement a getter for each [public instance] field

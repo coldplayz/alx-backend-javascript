@@ -1,6 +1,6 @@
 export default function updateUniqueItems(map) {
   if (!(map instanceof Map)) {
-    throw new Error('Cannot Process');
+    throw new Error('Cannot process');
   }
 
   // const mapCpy = new Map(map); // clone map

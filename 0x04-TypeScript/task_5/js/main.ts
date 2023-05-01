@@ -1,10 +1,10 @@
 export interface MajorCredits {
-  majorC: void; // branding
+  _majorC: void; // branding
   credits: number;
 }
 
 export interface MinorCredits {
-  minorC: void; // branding
+  _minorC: void; // branding
   credits: number;
 }
 
@@ -17,12 +17,14 @@ export function sumMinorCredits(subject1: MinorCredits, subject2: MinorCredits):
 }
 
 // Test code
-const mj1: MajorCredits = { majorC: void('major'), credits: 89 };
-const mj2: MajorCredits = { majorC: void('major'), credits: 98 };
-const mn1: MinorCredits = { minorC: void('minor'), credits: 51 };
-const mn2: MinorCredits = { minorC: void('minor'), credits: 15 };
+const mj1: MajorCredits = { credits: 89 } as MajorCredits;
+const mj2: MajorCredits = { credits: 98 } as MajorCredits;
+const mn1: MinorCredits = { credits: 51 } as MinorCredits;
+const mn2: MinorCredits = { credits: 15 } as MinorCredits; // seems to work as value -> { minorC: void('minor'), credits: 15 };
 
 console.log(sumMajorCredits(mj1, mj2).credits);
 console.log(sumMinorCredits(mn1, mn2).credits);
+
+// console.log(sumMinorCredits(mn1, mn2)._minorC); // is undefined; not set
 
 

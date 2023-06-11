@@ -1,8 +1,10 @@
 const readDatabase = require('./utils');
 
+const path = process.argv[2];
+
 class StudentsController {
   static getAllStudents(request, response) {
-    readDatabase('database.csv').then((objs) => {
+    readDatabase(path).then((objs) => {
       const orderedObjsKeys = {};
       for (const k in objs) {
         // map lower case form of objs keys to the actual key, for sorting
@@ -26,7 +28,7 @@ class StudentsController {
   }
 
   static getAllStudentsByMajor(request, response) {
-    readDatabase('database.csv').then((objs) => {
+    readDatabase(path).then((objs) => {
       const { major } = request.params;
       if (!['CS', 'SWE'].includes(major)) {
         response.status(500).send('Major parameter must be CS or SWE');

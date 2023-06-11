@@ -1,0 +1,55 @@
+const fs = require('fs');
+
+function countStudents(path) {
+  try {
+    // read contents as utf-8 strings; no encoding defaults to Buffer object
+    const content = fs.readFileSync(path, { encoding: 'utf-8' });
+    // process content
+    const lines = content.split('\n'); // make an array of lines
+    const headers = lines[0].split(','); // csv headers
+    const data = lines.slice(1); // get csv data minus header
+    const dataObjsList = [];
+    for (const datum of data) {
+      // compose a list of datum objects where the
+      // headers are keys for corresponding data of all data lines
+      if (!(datum instanceof String) && datum.length !== 0) {
+        // does not admit empty datum
+        const datumFields = datum.split(',');
+        const datumObj = {
+          firstname: null,
+          lastname: null,
+          age: null,
+          field: null,
+        };
+        for (const fieldIdx in datumFields) {
+          if (datumObj) {
+            datumObj[headers[fieldIdx]] = datumFields[fieldIdx];
+          }
+        }
+        dataObjsList.push(datumObj); // push the data object for further processing
+      }
+    }
+    console.log(`Number of students: ${dataObjsList.length}`);
+    const fieldsStat = {};
+    for (const dataObj of dataObjsList) {
+      // push the students in each field to a list keyed by corresponding field name
+      if (!fieldsStat[dataObj.field]) {
+        // initialize the student firstnames array
+        fieldsStat[dataObj.field] = [];
+      }
+      fieldsStat[dataObj.field].push(dataObj.firstname);
+    }
+
+    for (const key in fieldsStat) {
+      if (fieldsStat) {
+        const namesJoin = fieldsStat[key].join(', ');
+        console.log(`Number of students in ${key}: ${fieldsStat[key].length}. List: ${namesJoin}`);
+      }
+    }
+    // console.log(fieldsStat);
+  } catch (ENOENT) {
+    throw new Error('Cannot load the database');
+  }
+}
+
+module.exports = countStudents;

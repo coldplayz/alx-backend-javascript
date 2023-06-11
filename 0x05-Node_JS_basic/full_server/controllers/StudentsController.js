@@ -1,4 +1,4 @@
-const readDatabase = require('./utils');
+const readDatabase = require('../utils');
 
 const path = process.argv[2];
 

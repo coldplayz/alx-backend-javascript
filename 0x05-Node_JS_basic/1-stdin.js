@@ -4,7 +4,7 @@ console.log('Welcome to Holberton School, what is your name?');
 
 // the `readable` event is emitted when there's data to consume
 process.stdin.on('readable', () => {
-  const msg = process.stdin.read();  // msg contains newline character
+  const msg = process.stdin.read(); // msg contains newline character
   if (msg !== null) {
     process.stdout.write(`Your name is: ${msg}`);
   }

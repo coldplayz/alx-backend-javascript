@@ -7,7 +7,7 @@ function countStudentsAsync(path) {
       // read contents as utf-8 strings; no encoding defaults to Buffer object
       fs.readFile(path, { encoding: 'utf-8' }, (err, data) => {
         if (err) {
-          reject(new Error('Cannot load the database'));
+          reject(new Error('This is the list of our students\nCannot load the database'));
         } else {
           // process content
           const lines = data.split('\n'); // make an array of lines
@@ -56,7 +56,7 @@ function countStudentsAsync(path) {
         }
       });
     } catch (ENOENT) {
-      reject(new Error('Cannot load the database'));
+      reject(new Error('This is the list of our students\nCannot load the database'));
     }
   });
 

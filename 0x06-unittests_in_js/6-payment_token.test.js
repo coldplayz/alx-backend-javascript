@@ -9,10 +9,12 @@ describe('getPaymentTokenFromAPI', function () {
     //assert
     expect(res).to.be.an.instanceof(Promise);
     res.then((obj) => {
-      expect(obj).to.deep.equal({ data: 'Successful response from the API' });
+      expect(obj).to.deep.equal({ data: 'Successful response from the API' })
+      done();
+    })
+    .catch((err) => {
+      done(err);
     });
-
-    done();
   });
 
   it('(false): should return undefined, i.e. do nothing', function (done) {
